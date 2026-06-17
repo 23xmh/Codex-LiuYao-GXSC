@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>六爻在线起卦</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="topbar" aria-label="当前时空">
+        <div>
+          <p class="eyebrow">GEN X SOFT CLUB · LIU YAO</p>
+          <h1>六爻在线起卦</h1>
+        </div>
+        <div class="clock" aria-live="polite">
+          <span id="liveDate">--</span>
+          <strong id="liveTime">--:--:--</strong>
+          <span id="liveBranch">--时</span>
+        </div>
+      </section>
+
+      <section class="workspace" aria-label="起卦工作台">
+        <form class="query-panel" id="queryForm">
+          <div class="field">
+            <label for="question">你想问什么</label>
+            <textarea id="question" name="question" rows="5" placeholder="例如：这次合作是否适合推进？"></textarea>
+          </div>
+
+          <div class="field">
+            <label for="location">你所在的地区</label>
+            <div class="inline-field">
+              <input id="location" name="location" type="text" placeholder="例如：上海市浦东新区" />
+              <button class="ghost-button" type="button" id="locateBtn" title="取当前位置">定位</button>
+            </div>
+          </div>
+
+          <div class="mode-switch" role="tablist" aria-label="起卦方式">
+            <button class="mode-button is-active" type="button" data-mode="time" role="tab" aria-selected="true">时间起卦</button>
+            <button class="mode-button" type="button" data-mode="coin" role="tab" aria-selected="false">摇硬币</button>
+          </div>
+
+          <div class="mode-panel is-active" id="timePanel">
+            <div class="method-stamp">
+              <span>当前时辰</span>
+              <strong id="methodClock">--</strong>
+            </div>
+            <button class="primary-button" type="button" id="timeCastBtn">以此刻起卦</button>
+          </div>
+
+          <div class="mode-panel" id="coinPanel">
+            <div class="coin-board" id="coinBoard" aria-live="polite">
+              <span class="coin-placeholder">六爻未定</span>
+            </div>
+            <div class="coin-actions">
+              <button class="primary-button" type="button" id="tossBtn">摇第 1 爻</button>
+              <button class="ghost-button" type="button" id="autoTossBtn">一键摇完</button>
+              <button class="ghost-button" type="button" id="resetCoinBtn">清空</button>
+            </div>
+          </div>
+
+          <p class="status-line" id="statusLine" role="status"></p>
+        </form>
+
+        <section class="reading-panel" aria-label="卦象与解读">
+          <div class="empty-state" id="emptyState">
+            <div class="empty-mark" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <p>等待你的问题</p>
+          </div>
+
+          <div class="reading-content" id="readingContent" hidden>
+            <div class="reading-head">
+              <div>
+                <p class="eyebrow" id="castMeta">--</p>
+                <h2 id="readingTitle">--</h2>
+              </div>
+              <div class="verdict-pill" id="verdictPill">--</div>
+            </div>
+
+            <article class="answer-card">
+              <p class="answer-label">明确结论</p>
+              <p id="verdictText"></p>
+            </article>
+
+            <div class="hexagram-grid" id="hexagramGrid"></div>
+
+            <div class="insight-grid">
+              <article class="insight-block insight-wide">
+                <h3>为什么这么断</h3>
+                <p id="reasonText"></p>
+              </article>
+              <article class="insight-block">
+                <h3>下一步怎么做</h3>
+                <ul class="action-list" id="actionList"></ul>
+              </article>
+              <article class="insight-block">
+                <h3>动爻提示</h3>
+                <ul class="line-list" id="movingLines"></ul>
+              </article>
+              <article class="insight-block">
+                <h3>卦象参考</h3>
+                <p id="trigramText"></p>
+              </article>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
